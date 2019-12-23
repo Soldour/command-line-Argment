@@ -113,6 +113,19 @@ function matrixMultiply(a, b) {
   }
   return newArr;
 }
+function insertionArray(a) {
+  let key=[]
+  for (let i = 1; i < a.length; i++) {
+      key = a[i];
+    let j = i - 1;
+    while (j >= 0 && a[j] > key) {
+      a[j + 1] = a[j];
+      j = j - 1;
+    }
+    a[j + 1] = key;
+  }
+ }
+ 
 
 
 
@@ -127,6 +140,7 @@ module.exports =         //expoting this file ( fucntions )
     matrix_print,
     matrix_create,
     insertion,
+    insertionArray,
     matrixMultiply,
     towD_to_oneD
 

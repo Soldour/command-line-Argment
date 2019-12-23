@@ -127,10 +127,6 @@ function insertionArray(a) {
  }
  
 
-
-
-
-
 module.exports =         //expoting this file ( fucntions )
   {
     swap,

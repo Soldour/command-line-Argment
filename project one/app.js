@@ -5,6 +5,8 @@ let {
   Read_Matrix,
   matrix_print,
   matrixMultiply,
+  insertion,
+  insertionArray,
   towD_to_oneD
 
 } = require(`./funs.js`)     //importing  function file 
@@ -95,7 +97,18 @@ if (type === "matrix") {
   }
 
  
-}else {
+}else if(type==='sort'){
+  let matrixPath = process.argv[3];
+    let matrix = Read_Matrix(matrixPath)
+    for (let i = 0; i < matrix.length; i++) {     //find the minimum index from the 1d array
+      insertion(matrix)
+    }
+  
+    console.log(matrix)
+    
+
+}
+else {
   console.log("Error : unkown command!")
 }
 

@@ -21,7 +21,7 @@ function matrix_Transpose(m) {  // Transpose matrix
   return temp
 }
 
-function matrix_from_file(filename) {
+function Read_Matrix(filename) {
   let matrixBuffer = fs.readFileSync(filename)
   let martixStr = matrixBuffer.toString()
   let matrix = JSON.parse(martixStr)
@@ -48,22 +48,24 @@ function matrix_create(height, width) {  // creat matrix
 }
 
 function sub_matrix(a, b) {
-  let heightA = a.length
-  let widthA = a[0].length
-  let heightB = b.length
-  let widthB = b[0].length
-  if (heightB != widthA) throw Error("invalid matrix: it should be square matrix")
-  let k = []
+
+ let k = []
   k = new Array(a.length);
   for (let i = 0; i < k.length; i++) {
+    if( a[i].length!= b[i].length ) throw Error (" Error: each matrix must be square with equal size in between => n X n and m X m  n=m ")
+    if(a.length!=b[i].length) throw Error (" Error: each matrix must be square with equal size in between => n X n and m X m  n=m ")
+    if(b.length!=b[i].length) throw Error (" Error: each matrix must be square with equal size in between => n X n and m X m  n=m ")
+
     k[i] = new Array(a[0].length)
     for (let j = 0; j < a[i].length; j++) {
+     
       k[i][j] = a[i][j] - b[i][j]
     }
 
   }
   return k
 }
+
 function insertion(a) {
 
   for (let i = 1; i < a.length; i++) {
@@ -76,6 +78,7 @@ function insertion(a) {
     a[j + 1] = key;
   }
 }
+
 function towD_to_oneD(arr) {
   let temp = [];
   for (let i = 0; i < arr.length; i++) { //the .concat(a[i]) function will convert
@@ -86,6 +89,7 @@ function towD_to_oneD(arr) {
   }
   return temp
 }
+
 function matrixMultiply(a, b) {
 
   let widthA = a[0].length
@@ -95,8 +99,11 @@ function matrixMultiply(a, b) {
 
   let newArr = [];
   for (let i = 0; i < a.length; i++) {
+    
     newArr[i] = [];
     for (let j = 0; j < b[0].length; j++) {
+      if( a[i].length!= b[i].length ) throw Error (" Error: Invalid matrix ") 
+
       let sum = 0;
       for (let k = 0; k < a[0].length; k++) {
         sum += a[i][k] * b[k][j];
@@ -111,12 +118,12 @@ function matrixMultiply(a, b) {
 
 
 
-module.exports =         //expoting thsi file ( fucntions )
+module.exports =         //expoting this file ( fucntions )
   {
     swap,
     matrix_Transpose,
     sub_matrix,
-    matrix_from_file,
+    Read_Matrix,
     matrix_print,
     matrix_create,
     insertion,
